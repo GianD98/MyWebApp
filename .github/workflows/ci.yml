@@ -1,0 +1,30 @@
+Name: test-workflow
+
+on:
+  push:
+    branches: main
+
+jobs:
+  hello-world:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '7.0'
+
+      - name: Restore dependencies
+        run:
+          dotnet Restore
+
+      - name: Build the Application
+        run:
+          dotnet build --configuration Release --no-Restore
+
+      - name: Run tests
+        run:
+          dotnet test --no-restore --verbosity normal
+          
