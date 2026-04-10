@@ -22,7 +22,7 @@ jobs:
 
       - name: Build the Application
         run:
-          dotnet build --configuration Release --no-restore
+          dotnet build --configuration Release
 
       - name: Run tests
         run:
